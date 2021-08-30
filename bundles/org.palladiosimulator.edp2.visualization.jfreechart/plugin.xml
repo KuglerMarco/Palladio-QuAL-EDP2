@@ -27,6 +27,10 @@
             class="org.palladiosimulator.edp2.visualization.jfreechart.input.JFreeChartVisualizationSingleDatastreamInputFactory"
             id="org.palladiosimulator.edp2.visualization.jfreechart.input.JFreeChartVisualizationSingleDatastreamInputFactory">
       </factory>
+      <factory
+            class="org.palladiosimulator.edp2.visualisation.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory"
+            id="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory">
+      </factory>
    </extension>
 
    <extension
@@ -70,6 +74,12 @@
             editor="org.palladiosimulator.edp2.visualization.editors.JFreeChartEditor"
             factory="org.palladiosimulator.edp2.visualization.jfreechart.input.pie.executionresult.ExecutionResultPieChartVisualizationInputFactory"
             id="org.palladiosimulator.edp2.visualization.inputs.pie.executionresult.ExecutionResultPieChartVisualizationInput">
+      </datasink>
+      <datasink
+            class="org.palladiosimulator.edp2.visualisation.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInput"
+            editor="org.palladiosimulator.edp2.visualization.editors.JFreeChartEditor"
+            factory="org.palladiosimulator.edp2.visualisation.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory"
+            id="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygatePieChartVisualisationInput">
       </datasink>
    </extension>  
    
@@ -120,6 +130,16 @@
             name="Cumulative Distribution Function (CDF)">
          <datasink
                sinkID="org.palladiosimulator.edp2.visualization.inputs.CDFEditorInput">
+         </datasink>
+      </chainDescription>
+   </extension>
+   <extension
+         point="org.palladiosimulator.edp2.datastream.chainDescription">
+      <chainDescription
+            id="org.palladiosimulator.edp2.visualization.jfreechart.piechart.qualitygate"
+            name="Qualitygate Result">
+         <datasink
+               sinkID="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygatePieChartVisualisationInput">
          </datasink>
       </chainDescription>
    </extension>

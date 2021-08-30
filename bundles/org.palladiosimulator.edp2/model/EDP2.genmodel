@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.palladiosimulator.edp2/src-gen" 
-    editDirectory="/org.palladiosimulator.edp2.edit/src-gen" editorDirectory="/org.palladiosimulator.edp2.editor/src-gen" modelPluginID="org.palladiosimulator.edp2"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.palladiosimulator.edp2/src-gen" editDirectory="/org.palladiosimulator.edp2.edit/src-gen"
+    editorDirectory="/org.palladiosimulator.edp2.editor/src-gen" modelPluginID="org.palladiosimulator.edp2"
     modelName="EDP2" rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
     rootImplementsInterface="" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
     featureDelegation="Dynamic" complianceLevel="7.0" copyrightFields="false" language=""
-    usedGenPackages="platform:/plugin/de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier platform:/plugin/org.palladiosimulator.metricspec/model/metricspec.genmodel#//metricspec"
+    usedGenPackages="../../de.uka.ipd.sdq.identifier/model/identifier.genmodel#//identifier ../../org.palladiosimulator.metricspec/model/metricspec.genmodel#//metricspec"
     cleanup="true">
   <foreignModel>EDP2.ecore</foreignModel>
   <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
@@ -185,9 +185,6 @@
         extensibleProviderFactory="true" fileExtensions="edp2repository" ecorePackage="EDP2.ecore#//Repository">
       <genClasses ecoreClass="EDP2.ecore#//Repository/LocalMemoryRepository">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EDP2.ecore#//Repository/LocalMemoryRepository/domain"/>
-      </genClasses>
-      <genClasses ecoreClass="EDP2.ecore#//Repository/RemoteCdoRepository">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute EDP2.ecore#//Repository/RemoteCdoRepository/url"/>
       </genClasses>
       <genClasses ecoreClass="EDP2.ecore#//Repository/Repositories">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference EDP2.ecore#//Repository/Repositories/availableRepositories"/>
