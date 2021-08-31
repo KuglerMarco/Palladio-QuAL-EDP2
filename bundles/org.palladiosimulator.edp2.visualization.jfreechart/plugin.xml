@@ -31,6 +31,10 @@
             class="org.palladiosimulator.edp2.visualisation.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory"
             id="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory">
       </factory>
+      <factory
+            class="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationFactory"
+            id="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationInputFactory">
+      </factory>
    </extension>
 
    <extension
@@ -80,6 +84,12 @@
             editor="org.palladiosimulator.edp2.visualization.editors.JFreeChartEditor"
             factory="org.palladiosimulator.edp2.visualisation.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory"
             id="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygatePieChartVisualisationInput">
+      </datasink>
+      <datasink
+            class="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationInput"
+            editor="org.palladiosimulator.edp2.visualization.editors.JFreeChartEditor"
+            factory="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationFactory"
+            id="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygateHistogramVisualisationInput">
       </datasink>
    </extension>  
    
