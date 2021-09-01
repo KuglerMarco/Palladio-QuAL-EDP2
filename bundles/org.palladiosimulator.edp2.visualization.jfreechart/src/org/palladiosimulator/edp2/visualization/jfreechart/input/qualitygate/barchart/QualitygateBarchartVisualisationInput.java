@@ -1,8 +1,13 @@
-package org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram;
+package org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.barchart;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.lang.mutable.MutableDouble;
@@ -28,20 +33,20 @@ import org.palladiosimulator.metricspec.Identifier;
 import org.palladiosimulator.metricspec.Scale;
 import org.palladiosimulator.metricspec.constants.MetricDescriptionConstants;
 
-public class QualitygateHistogramVisualisationInput extends JFreeChartVisualizationInput {
+public class QualitygateBarchartVisualisationInput extends JFreeChartVisualizationInput {
 
-    public QualitygateHistogramVisualisationInput() {
+    public QualitygateBarchartVisualisationInput() {
         this(null);
     }
     
     
-    public QualitygateHistogramVisualisationInput(final AbstractDataSource source) {
+    public QualitygateBarchartVisualisationInput(final AbstractDataSource source) {
         super();
     }
     
     @Override
     public void saveState(final IMemento memento) {
-        QualitygateHistogramVisualisationFactory.saveState(memento, this);
+        QualitygateBarchartVisualisationInputFactory.saveState(memento, this);
     }
     
     
@@ -58,9 +63,7 @@ public class QualitygateHistogramVisualisationInput extends JFreeChartVisualizat
             return false;
         }
         if (!subMetricDescriptions[1].getName()
-            .equals("Severity")
-                && !subMetricDescriptions[1].getName()
-                    .equals("QualitygateViolation")) {
+                    .equals("InvolvedIssues")) {
             return false;
         }
 
@@ -73,16 +76,11 @@ public class QualitygateHistogramVisualisationInput extends JFreeChartVisualizat
 
     @Override
     public String getFactoryId() {
-        return QualitygateHistogramVisualisationFactory.FACTORY_ID; 
+        return QualitygateBarchartVisualisationInputFactory.FACTORY_ID; 
     }
 
 
 
-    @Override
-    protected Set<String> getPropertyKeysTriggeringUpdate() {
-        return Collections.emptySet();
-    }
-    
     
     @Override
     protected Plot generatePlot(final PropertyConfigurable config, final AbstractDataset dataset) {
@@ -111,25 +109,43 @@ public class QualitygateHistogramVisualisationInput extends JFreeChartVisualizat
         
         
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        final Map<String, MutableDouble> bins = new HashMap<String, MutableDouble>();
+        final Map<String, Integer> bins = new LinkedHashMap<String, Integer>();
         final IDataSource datasource = getInputs().get(0).getDataSource();
         final IDataStream<TupleMeasurement> datastream = datasource.getDataStream();
+        
+        
         
         for(final TupleMeasurement tuple : datastream) {
             
             final String state =  (String) ((Identifier) tuple.asArray()[1].getValue()).getLiteral();
             
             if (!bins.containsKey(state)) {
-                bins.put(state, new MutableDouble(0.0d));
+                bins.put(state, 1);
             }
-            bins.get(state)
-                .add(1.0);
+            bins.put(state, bins.get(state) + 1);
 
         }
         
+        
+        List<Entry<String, Integer>> list = new ArrayList<>(bins.entrySet());
+        list.sort(Entry.comparingByValue(Comparator.reverseOrder()));
+        bins.clear();
+        
+        for(Entry<String, Integer> entry : list) {
+            bins.put(entry.getKey(), entry.getValue());
+        }
+        
         for (final String o : bins.keySet()) {
-            dataset.setValue(bins.get(o)
-                .doubleValue(), o, "test");
+            if(o.equals("Overall count of violation")) {
+                dataset.setValue(bins.get(o), o, o);
+            }
+        }
+        
+        
+        for (final String o : bins.keySet()) {
+            if(!o.equals("Overall count of violation")) {
+                dataset.setValue(bins.get(o), o, o);
+            }
         }
         
         return dataset;
@@ -147,5 +163,12 @@ public class QualitygateHistogramVisualisationInput extends JFreeChartVisualizat
     public String getName() {
         return "Propagation Results";
     }
+
+
+    @Override
+    protected Set<String> getPropertyKeysTriggeringUpdate() {
+        return Collections.emptySet();
+    }
+    
     
 }

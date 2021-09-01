@@ -32,8 +32,8 @@
             id="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.QualitygatePieChartVisualisationInputFactory">
       </factory>
       <factory
-            class="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationFactory"
-            id="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationInputFactory">
+            class="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.barchart.QualitygateBarchartVisualisationInputFactory"
+            id="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.barchart.QualitygateBarchartVisualisationInputFactory">
       </factory>
    </extension>
 
@@ -86,10 +86,10 @@
             id="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygatePieChartVisualisationInput">
       </datasink>
       <datasink
-            class="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationInput"
+            class="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.barchart.QualitygateBarchartVisualisationInput"
             editor="org.palladiosimulator.edp2.visualization.editors.JFreeChartEditor"
-            factory="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygateHistogram.QualitygateHistogramVisualisationFactory"
-            id="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygateHistogramVisualisationInput">
+            factory="org.palladiosimulator.edp2.visualization.jfreechart.input.qualitygate.barchart.QualitygateBarchartVisualisationInputFactory"
+            id="org.palladiosimulator.edp2.visualization.inputs.barchart.QualitygateBarchartVisualisationInput">
       </datasink>
    </extension>  
    
@@ -150,6 +150,16 @@
             name="Qualitygate Result">
          <datasink
                sinkID="org.palladiosimulator.edp2.visualization.inputs.pie.qualitygate.QualitygatePieChartVisualisationInput">
+         </datasink>
+      </chainDescription>
+   </extension>
+   <extension
+         point="org.palladiosimulator.edp2.datastream.chainDescription">
+      <chainDescription
+            id="org.palladiosimulator.edp2.visualization.jfreechart.barchart.qualitygate"
+            name="Chart Propagation">
+         <datasink
+               sinkID="org.palladiosimulator.edp2.visualization.inputs.barchart.QualitygateBarchartVisualisationInput">
          </datasink>
       </chainDescription>
    </extension>
